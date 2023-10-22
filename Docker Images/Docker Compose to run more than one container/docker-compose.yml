@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  akash-image:
+   image: akashkale/my-web:123
+   ports:
+     - 81:80
+  bhavesh-image:
+   image: bhaveshnp33/my-web:1.0
+   ports:
+     - 82:80
+  karan-image:
+   image: karanvirmani21/my-web:1.0
+   ports:
+     - 83:80
+  hello-world-image:
+   image: hello-world
