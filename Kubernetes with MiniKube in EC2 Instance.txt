@@ -1,0 +1,84 @@
+First create the EC2 instance 
+move to root user 
+
+sudo su 
+
+root 	->	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -				download 
+
+root       ->   sudo echo deb http://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
+
+
+root      ->  sudo apt-get update
+
+root  ->   sudo apt install docker.io kubectl					install docker and kubectl 
+
+
+Now check the status of docker 
+
+root -> sudo systemctl status docker
+									Cntr + C : exit terminal 
+
+root -> sudo systemctl restart docker
+
+root - > sudo systemctl stop docker
+
+root -> sudo systemctl start docker
+
+root -> sudo systemctl daemon-reload
+
+
+Test the program 
+
+root -> docker run hello-world 
+
+To check the kubectl version 
+
+root -> kubectl version
+
+Now we will install docker-compose 
+
+root --> sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+
+
+root -> sudo chmod +x /usr/local/bin/docker-compose
+
+root --> docker-compose --version 
+
+install the minikube 
+
+root -> sudo apt install -y curl wget apt-transport-https
+
+root -> curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+root --> sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+root --> minikube version 
+
+					root --> sudo apt-get install -y conntrack
+
+					root --> sudo apt update && sudo apt upgrade
+
+
+
+
+now exits from root user using command as 
+
+root -> exit 
+
+Then add the docker in user group using the command as 
+
+ubuntu -> sudo usermod -aG docker $USER && newgrp docker
+
+
+Now check the 
+
+ubuntu --> docker images 
+
+ubuntu --> docker ps 
+
+ubuntu --> minikube start --driver=docker 
+
+ubuntu --> minikube dashboard 
+
+ubuntu --> minikube addons enable metrics-server
