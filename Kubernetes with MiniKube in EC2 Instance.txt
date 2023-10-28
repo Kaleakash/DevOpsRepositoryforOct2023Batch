@@ -1,22 +1,25 @@
-First create the EC2 instance 
+First create the EC2 instance with ubuntu 
+
 move to root user 
 
 sudo su 
 
-root 	->	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -				download 
+root 	->	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -				
 
 root       ->   sudo echo deb http://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
 
 
 root      ->  sudo apt-get update
 
-root  ->   sudo apt install docker.io kubectl					install docker and kubectl 
+root  ->   sudo apt install docker.io kubectl 				
 
 
 Now check the status of docker 
 
 root -> sudo systemctl status docker
 									Cntr + C : exit terminal 
+
+if not running please run below command to start, restart and check status. 
 
 root -> sudo systemctl restart docker
 
@@ -25,6 +28,16 @@ root - > sudo systemctl stop docker
 root -> sudo systemctl start docker
 
 root -> sudo systemctl daemon-reload
+
+
+please check docker version as well as kubetl version 
+
+
+--->docker --version 
+
+-->docker info 
+
+-->kubectl version 
 
 
 Test the program 
