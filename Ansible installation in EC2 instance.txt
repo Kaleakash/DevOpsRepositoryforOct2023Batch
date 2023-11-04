@@ -1,0 +1,101 @@
+node name 			public key 					private key 
+ansible server 		PublicIPs: 54.166.203.211    	PrivateIPs: 172.31.39.164
+node1				PublicIPs: 34.235.162.17    		PrivateIPs: 172.31.37.187
+node2				PublicIPs: 54.147.191.95    		PrivateIPs: 172.31.35.144
+
+
+please install these command in ansible server instance 
+
+sudo apt-get update 
+sudo apt-get install software-properties-common 
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update 
+sudo apt-get install ansible 
+
+Now we will add the host details in Ansible Server 
+
+sudo vi /etc/ansible/hosts 
+
+Add all nodes ip address details inside this file ie private IP Address 
+
+sudo vi /etc/ansible/ansible.cfg 
+ 
+[defaults]
+inventory=/etc/ansible/hosts
+sudo-user=root
+
+Now create a user 			do this steps in all nodes 
+sudo adduser ansible 
+
+
+This ansible user don't have sudo privileges right now
+we need to give the all privileges 
+
+sudo vi /etc/sudoers						do this step in all nodes 
+%ansible ALL=(ALL:ALL) NOPASSWD:ALL
+
+
+
+in all nodes we need to switch to ansible user 
+su - ansible 
+
+
+After set all details in all nodes  
+
+now switch to ansible user in all nodes and run the command as 
+sudo apt-get update 
+
+
+
+Now we need to establish the conntion 
+
+
+Now in Ansible node type as 
+ssh PrivateIPAddressOfNode 
+
+May you will get the Output as permission denied. 
+This is due to SSH restrictions. 
+
+move the root user ie exit 
+
+sudo vi /etc/ssh/sshd_config
+
+and edit the information 
+
+PasswordAuthentication yes
+PubkeyAuthentication yes
+
+
+
+Now please restart the service 		to this task in all nodes 
+
+sudo service ssh restart 
+sudo service ssh status 
+
+
+Now switch to the Ansible server node 
+then write 
+ssh NodeIpAddress 
+
+Now from ansible server or master node if you want to connect to node1 or node2 we need to enter the password 
+So now we will see how to configure ssh key to connect to node1 or node2 from server node 
+now in master or ansible node write the command as 
+
+ssh-keygen 			(ssh means Secure Socket Shell,Ssh-keygen is a tool for creating new authentication key pairs for SSH)
+please hit enter key again and again 
+after key generated 
+ls -a 		(to check the .ssh folder)
+cd .ssh 	(move inside that folder)
+ssh-copy-id ansible@PrivateIPAddressOfNode1
+ 
+ssh-copy-id ansible@172.31.39.251
+
+After this we can connect from ansible node to node1 using one command as 
+
+ssh 'ansible@172.31.39.251'
+
+Now we will connect node2 using ssh-copy-id command 
+
+
+please do same for all nodes but while creating ssh-keygen create new file for each node. 
+
