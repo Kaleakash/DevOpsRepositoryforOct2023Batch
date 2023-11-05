@@ -4,6 +4,12 @@ node1				PublicIPs: 34.235.162.17    		PrivateIPs: 172.31.37.187
 node2				PublicIPs: 54.147.191.95    		PrivateIPs: 172.31.35.144
 
 
+
+sudo su 		to move root user 
+or 
+sudo - i
+
+
 please install these command in ansible server instance 
 
 sudo apt-get update 
@@ -16,6 +22,11 @@ Now we will add the host details in Ansible Server
 
 sudo vi /etc/ansible/hosts 
 
+[default]
+privateIpAddress
+privateIpAddress
+
+
 Add all nodes ip address details inside this file ie private IP Address 
 
 sudo vi /etc/ansible/ansible.cfg 
@@ -24,7 +35,10 @@ sudo vi /etc/ansible/ansible.cfg
 inventory=/etc/ansible/hosts
 sudo-user=root
 
-Now create a user 			do this steps in all nodes 
+
+SSH Client Configuration 
+
+Now create a user 			do this steps in all nodes 	in all node move to root user. 
 sudo adduser ansible 
 
 
@@ -47,7 +61,7 @@ sudo apt-get update
 
 
 
-Now we need to establish the conntion 
+Now we need to establish the connection  
 
 
 Now in Ansible node type as 
@@ -88,11 +102,11 @@ ls -a 		(to check the .ssh folder)
 cd .ssh 	(move inside that folder)
 ssh-copy-id ansible@PrivateIPAddressOfNode1
  
-ssh-copy-id ansible@172.31.39.251
+ssh-copy-id ansible@privateIpAddress
 
 After this we can connect from ansible node to node1 using one command as 
 
-ssh 'ansible@172.31.39.251'
+ssh 'ansible@PrivateIpAddress'
 
 Now we will connect node2 using ssh-copy-id command 
 
