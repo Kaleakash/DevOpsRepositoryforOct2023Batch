@@ -93,12 +93,12 @@ ssh NodeIpAddress
 
 Now from ansible server or master node if you want to connect to node1 or node2 we need to enter the password 
 So now we will see how to configure ssh key to connect to node1 or node2 from server node 
-now in master or ansible node write the command as 
+now in master or ansible node write the command as without password ie token base. 
 
 ssh-keygen 			(ssh means Secure Socket Shell,Ssh-keygen is a tool for creating new authentication key pairs for SSH)
 please hit enter key again and again 
 after key generated 
-ls -a 		(to check the .ssh folder)
+sudo ls -a 		(to check the .ssh folder)
 cd .ssh 	(move inside that folder)
 ssh-copy-id ansible@PrivateIPAddressOfNode1
  

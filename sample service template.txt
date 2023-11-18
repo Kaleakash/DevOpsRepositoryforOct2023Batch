@@ -1,0 +1,41 @@
+define host{
+            use                     linux-server
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            alias                   ec2-35-174-1-176.compute-1.amazonaws.com
+            address                 35.174.1.176
+}
+define hostgroup{
+            hostgroup_name         host-group
+            alias                  host-group-alias
+            members                ec2-35-174-1-176.compute-1.amazonaws.com
+}
+define service{
+            use                     local-service
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            service_description     SWAP Uasge
+            check_command           check_nrpe!check_swap
+}
+define service{
+            use                     local-service
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            service_description     Root / Partition
+            check_command           check_nrpe!check_root
+}
+define service{
+            use                     local-service
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            service_description     Current Users
+            check_command           check_nrpe!check_users
+}
+define service{
+            use                     local-service
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            service_description     Total Processes
+            check_command           check_nrpe!check_total_procs
+}
+define service{
+            use                     local-service
+            host_name               ec2-35-174-1-176.compute-1.amazonaws.com
+            service_description     Current Load
+            check_command           check_nrpe!check_load
+}
