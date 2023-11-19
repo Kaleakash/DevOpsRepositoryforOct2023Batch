@@ -214,3 +214,10 @@ sudo systemctl restart nagios
 
 
 Open few ports in all node including nagios and host machines 
+
+
+
+> sudo apt-get install nagios-nrpe-plugin
+> cd /usr/lib/nagios/plugins/
+> ls check_nr*
+check_nrpe
