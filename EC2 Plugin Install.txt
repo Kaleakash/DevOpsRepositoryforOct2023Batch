@@ -88,17 +88,18 @@ to clean jenkins cache
 
 Or 
 
--->sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 
---> sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
---> sudo yum install epel-release
+sudo yum install Jenkins
 
---> sudo yum install java-11-openjdk-devel
+after installation we need to start the Jenkin 
 
---> sudo yum install jenkins
+sudo service jenkins start		this command to start 
 
---> sudo service jenkins start
+sudo systemctl status Jenkins		this is use to check the status 
+					to exit that flow please type cntr + c twice 
 
 
 -----------------------> Node JS 
